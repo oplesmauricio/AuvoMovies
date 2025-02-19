@@ -41,7 +41,7 @@ namespace AuvoMovies.Services
 
             if(response.Sucesso)
             {
-                _settings.Token = "Bearer " +  response.Resposta.request_token;
+                //_settings.Token = "Bearer " +  response.Resposta.request_token;
                 return Result.Ok();
             }
 

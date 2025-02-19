@@ -1,3 +1,4 @@
+using AuvoMovies.Models;
 using AuvoMovies.Services;
 using AuvoMovies.Services.Interfaces;
 using AuvoMovies.ViewModels;
@@ -23,10 +24,10 @@ public partial class FilmesPage : ContentPage
 
     private async void OnMovieSelected(object sender, SelectionChangedEventArgs e)
     {
-        var selectedMovie = e.CurrentSelection.FirstOrDefault() as dynamic;
-        if (selectedMovie != null)
+        var filmeSelecionado = (Filme)e.CurrentSelection.FirstOrDefault();
+        await Shell.Current.GoToAsync($"{nameof(FilmeDetailPage)}", true, new Dictionary<string, object>
         {
-            await Navigation.PushAsync(new FilmeDetailPage(selectedMovie));
-        }
+            {"Filme",  filmeSelecionado}
+        });
     }
 }

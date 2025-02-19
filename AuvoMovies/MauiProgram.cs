@@ -30,6 +30,8 @@ namespace AuvoMovies
 
             builder.Services.AddSingleton<FilmesPage>();
             builder.Services.AddSingleton<FilmesViewModel>();
+            builder.Services.AddScoped<FilmeDetailPage>();
+            builder.Services.AddScoped<FilmesDetailViewModel>();
 
 
             return builder.Build();

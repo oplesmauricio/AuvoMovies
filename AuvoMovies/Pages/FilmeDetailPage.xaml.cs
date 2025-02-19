@@ -1,15 +1,13 @@
 using AuvoMovies.Models;
+using AuvoMovies.ViewModels;
 
 namespace AuvoMovies.Pages;
 
 public partial class FilmeDetailPage : ContentPage
 {
-    public FilmeDetailPage(dynamic movie)
+    public FilmeDetailPage(FilmesDetailViewModel vm)
     {
         InitializeComponent();
-
-        PosterImage.Source = movie.PosterPath;
-        TitleLabel.Text = movie.Title;
-        OverviewLabel.Text = movie.Overview;
+        BindingContext = vm;
     }
 }
