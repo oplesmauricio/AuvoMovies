@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AuvoMovies.Pages;
+using AuvoMovies.Services;
+using AuvoMovies.Services.Interfaces;
+using AuvoMovies.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace AuvoMovies
 {
@@ -18,6 +22,15 @@ namespace AuvoMovies
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddSingleton<IFilmeService, FilmeService>();
+
+            builder.Services.AddSingleton<IApiService, ApiService>();
+            builder.Services.AddSingleton<ISettings, Settings>();
+
+            builder.Services.AddSingleton<FilmesPage>();
+            builder.Services.AddSingleton<FilmesViewModel>();
+
 
             return builder.Build();
         }

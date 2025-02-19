@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using AuvoMovies.Services.Interfaces;
 using AuvoMovies.Services;
+using Bumptech.Glide.Load.Model;
 
 namespace AuvoMovies.Services
 {
@@ -259,6 +260,42 @@ namespace AuvoMovies.Services
                 {
                     return await VerificarRetorno<T>(response);
                 }
+            }
+        }
+
+        public async Task<RespostaServico<T>> GetAnonymousAsync<T>(string url)
+        {
+            try
+            {
+                var _handler = new HttpClientHandler();
+                _handler.ServerCertificateCustomValidationCallback =
+                    (message, certificate, chain, sslPolicyErrors) => true;
+
+                using (var client = new HttpClient(_handler))
+                {
+                    using (var response = await client.GetAsync(url))
+                    {
+                        return await VerificarRetorno<T>(response);
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                return new RespostaServico<T>
+                {
+                    HttpStatus = ex.StatusCode.ToString(),
+                    Sucesso = false,
+                    Mensagem = ex.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RespostaServico<T>
+                {
+                    HttpStatus = "400",
+                    Sucesso = false,
+                    Mensagem = ex.Message
+                };
             }
         }
     }

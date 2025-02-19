@@ -4,12 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AuvoMovies"
+    xmlns:pages="clr-namespace:AuvoMovies.Pages"
     Shell.FlyoutBehavior="Disabled"
     Title="AuvoMovies">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        ContentTemplate="{DataTemplate pages:FilmesPage}"
+        Route="FilmesPage" />
 
 </Shell>
