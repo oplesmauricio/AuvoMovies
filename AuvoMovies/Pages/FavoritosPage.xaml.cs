@@ -38,7 +38,7 @@ public partial class FavoritosPage : ContentPage
                 {"Filme",  filmeSelecionado}
             });
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes, chama o Maicon (se eu passar pode me chamar tb =D)", "Ok");
         }

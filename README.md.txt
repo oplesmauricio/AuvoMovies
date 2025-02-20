@@ -1,0 +1,1 @@
+Deixei as interfaces nas mesmas pastas das respectivas implementacoes pois penso que cada app tenha sua melhor forma de arquitetar esses dados.

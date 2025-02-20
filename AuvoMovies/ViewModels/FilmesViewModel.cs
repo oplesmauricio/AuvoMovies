@@ -7,6 +7,8 @@ using AuvoMovies.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers.Commands;
+using FluentResults;
+using AuvoMovies.Infra.Interfaces;
 
 
 namespace AuvoMovies.ViewModels
@@ -15,6 +17,7 @@ namespace AuvoMovies.ViewModels
     {
         private IFilmeService _filmeService;
         private ISettings _settings;
+        private IRepository _repository;
 
         [ObservableProperty]
         public ObservableCollection<Filme> filmes = new();
@@ -26,10 +29,11 @@ namespace AuvoMovies.ViewModels
         //public IRelayCommand RefreshCommand { get; }
         public AsyncCommand RefreshCommand { get; }
 
-        public FilmesViewModel(IFilmeService filmeService, ISettings settings)
+        public FilmesViewModel(IFilmeService filmeService, ISettings settings, IRepository repository)
         {
             _filmeService = filmeService;
             _settings = settings;
+            _repository = repository;
         }
 
         public async Task GetFilmesAsync()
@@ -69,6 +73,31 @@ namespace AuvoMovies.ViewModels
             GetFilmesAsync();
 
             IsBusy = false;
+        }
+
+        public async Task SincronizarSQLiteApi()
+        {
+            var filmesLocais = _repository.BUscar();
+
+            if (filmesLocais.Count == 0)
+                return;
+
+            var result = await Task.Run(() => Sincronizar(filmesLocais));
+
+            await MainThread.InvokeOnMainThreadAsync(async () =>
+            {
+                if (result.IsSuccess)
+                    Application.Current.MainPage.DisplayAlert("Filmes sincronizados", "Os filmes que vc favoritou offline agora estao sincronizados", "Ok");
+            });
+        }
+
+        private async Task<Result> Sincronizar(List<Filme> filmesLocais)
+        {
+            foreach ( var filme in filmesLocais)
+                if((await _filmeService.Favoritar(filme.Id)).IsSuccess)
+                    _repository.Delete(filme);
+
+            return Result.Ok();
         }
     }
 }

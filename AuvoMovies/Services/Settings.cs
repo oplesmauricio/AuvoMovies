@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AuvoMovies.Services.Interfaces;
+using SQLite;
 
 namespace AuvoMovies.Services
 {
@@ -23,5 +24,20 @@ namespace AuvoMovies.Services
         public string ApiKeyTMDB { get => "c46e5cc683764f4b99c03638e3ad0f09"; }
         public string Token { get => "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNDZlNWNjNjgzNzY0ZjRiOTljMDM2MzhlM2FkMGYwOSIsIm5iZiI6MTczOTkwNzg2Ni4yMTIsInN1YiI6IjY3YjRlMzFhYjY4N2U3MzhmMTU2NWNlZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nrkwK_r9tDfP2CTxmK_lvACg30LPkOgrlQvzngNIHUc"; }
         //public string Token { get; set; }
+
+        
+        public string DatabaseFilename { get => "AuvoMovies.db3"; }
+
+        public SQLite.SQLiteOpenFlags Flags
+        {
+            get
+            {
+                return SQLite.SQLiteOpenFlags.ReadWrite |
+                SQLite.SQLiteOpenFlags.Create |
+                SQLite.SQLiteOpenFlags.SharedCache;
+            }
+        }
+
+        public string DatabasePath { get => Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename); }
     }
 }

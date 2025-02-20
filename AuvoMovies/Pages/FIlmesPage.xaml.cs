@@ -3,6 +3,7 @@ using AuvoMovies.Pages.Base;
 using AuvoMovies.Services;
 using AuvoMovies.Services.Interfaces;
 using AuvoMovies.ViewModels;
+using FluentResults;
 
 namespace AuvoMovies.Pages;
 
@@ -21,12 +22,24 @@ public partial class FilmesPage : BasePage
         try
         {
             base.OnAppearing();
-            //await this.vm.Autenticar(); TMDB modificou sua forma de acessar com token de leitura fixo por usuario
-            await this.vm.GetFilmesAsync();
+
+            if (!INternetConectada())
+            {
+                if(vm.Filmes.Any())
+                    await DisplayAlert("Voce esta sem internet", "No entanto, fique tranquilo, pode navegar normalmente pela lista que vc ja estava olhando e continuar favoritando, logo que a coenxao for reestabelecida, sincronizamos tudo ;)", "Ok");
+                else
+                    await DisplayAlert("Voce esta sem internet", "Reestabelexa a conexao e tente novamente", "Ok");
+            }
+            else
+            {
+                await this.vm.SincronizarSQLiteApi();
+                //await this.vm.Autenticar(); TMDB modificou sua forma de acessar com token de leitura fixo por usuario
+                await this.vm.GetFilmesAsync();
+            }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes, chama o Maicon (se eu passar pode me chamar tb =D)", "Ok");
+            await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes", "Ok");
         }
     }
 
@@ -40,9 +53,9 @@ public partial class FilmesPage : BasePage
                 {"Filme",  filmeSelecionado}
             });
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes, chama o Maicon (se eu passar pode me chamar tb =D)", "Ok");
+            await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes", "Ok");
         }
     }
 }

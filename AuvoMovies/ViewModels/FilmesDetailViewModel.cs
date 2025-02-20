@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
+using AuvoMovies.Infra.Interfaces;
 using AuvoMovies.Models;
 using AuvoMovies.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -16,6 +17,7 @@ namespace AuvoMovies.ViewModels
     {
         private IFilmeService _filmeService;
         private ISettings _settings;
+        private IRepository _repository;
 
         [ObservableProperty]
         public Filme filme;
@@ -25,21 +27,25 @@ namespace AuvoMovies.ViewModels
 
         //public IRelayCommand FavoritarCommand { get; }
 
-        public FilmesDetailViewModel(IFilmeService filmeService, ISettings settings)
+        public FilmesDetailViewModel(IFilmeService filmeService, ISettings settings, IRepository repository)
         {
             _filmeService = filmeService;
             _settings = settings;
+            _repository = repository;
         }
 
         [RelayCommand]
         private async void Favoritar()
         {
+            _repository.Salvar(filme);
+
             var result = await _filmeService.Favoritar(filme.Id);
             //isRefreshing = false;
             if (result.IsSuccess)
+            {
                 await Application.Current.MainPage.DisplayAlert("Adicionado", "Td certo!", "Ok");
-            else
-                await Application.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro ao adicionar o filme aos seus favotiros", "Ok");
+                _repository.Delete(filme);
+            }
         }
         //    async Task Favoritar()
         //    {

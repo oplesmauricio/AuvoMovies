@@ -45,4 +45,9 @@ public partial class BasePage : ContentPage
         get { return (Color)GetValue(BaseTitleColorProperty); }
         set { SetValue(BaseTitleColorProperty, value); }
     }
+
+    public bool INternetConectada()
+    {
+        return Connectivity.NetworkAccess == NetworkAccess.Internet;
+    }
 }

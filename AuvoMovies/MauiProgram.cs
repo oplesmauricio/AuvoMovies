@@ -1,4 +1,6 @@
-﻿using AuvoMovies.Pages;
+﻿using AuvoMovies.Infra;
+using AuvoMovies.Infra.Interfaces;
+using AuvoMovies.Pages;
 using AuvoMovies.Services;
 using AuvoMovies.Services.Interfaces;
 using AuvoMovies.ViewModels;
@@ -26,9 +28,9 @@ namespace AuvoMovies
     		builder.Logging.AddDebug();
 #endif
 
-            builder.Services.AddSingleton<IFilmeService, FilmeService>();
-
             builder.Services.AddSingleton<IApiService, ApiService>();
+            builder.Services.AddSingleton<IFilmeService, FilmeService>();
+            builder.Services.AddSingleton<IRepository, Repository>();
             builder.Services.AddSingleton<ISettings, Settings>();
 
             builder.Services.AddSingleton<FilmesPage>();

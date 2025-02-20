@@ -1,12 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 using CommunityToolkit.Mvvm.ComponentModel;
+using SQLite;
 
 
 namespace AuvoMovies.Models
 {
     public class Filme : ObservableObject
     {
-
         private bool adult;
         [JsonPropertyName("adult")]
         public bool Adult
@@ -23,16 +23,9 @@ namespace AuvoMovies.Models
             set => SetProperty(ref backdrop_path, value);
         }
 
-        private List<int> genre_ids;
-        [JsonPropertyName("genre_ids")]
-        public List<int> GenreIds
-        {
-            get { return genre_ids; }
-            set => SetProperty(ref genre_ids, value);
-        }
-
         private int id;
         [JsonPropertyName("id")]
+        [PrimaryKey]
         public int Id
         {
             get { return id; }

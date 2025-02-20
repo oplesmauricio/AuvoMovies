@@ -7,7 +7,6 @@
              xmlns:sys="clr-namespace:System;assembly=netstandard">
     <Grid Padding="30,30,30,15" ColumnDefinitions="*, Auto">
 
-        <!--  Copyright  -->
         <HorizontalStackLayout
             HorizontalOptions="Start"
             Spacing="5"
@@ -23,12 +22,11 @@
                 </Image.Source>
             </Image>
 
-            <Label Text="Marianna Assumpcao" TextColor="{DynamicResource White}" FontSize="Micro"/>
+            <Label Text="Auvo MOvies" TextColor="{DynamicResource White}" FontSize="Micro"/>
             <Label Text=" - " TextColor="{DynamicResource White}" FontSize="Micro" />
             <Label FontSize="Micro" Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:yyyy}'}" TextColor="{DynamicResource White}" />
         </HorizontalStackLayout>
 
-        <!--  Version info  -->
         <Border
             Grid.Column="1"
             Padding="10,0"

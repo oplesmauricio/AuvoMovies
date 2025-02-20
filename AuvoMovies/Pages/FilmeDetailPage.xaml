@@ -4,7 +4,7 @@
              x:Class="AuvoMovies.Pages.FilmeDetailPage"
              xmlns:models="clr-namespace:AuvoMovies.Models"
              x:DataType="models:Filme"
-             Title="FilmeDetailPage">
+             Title="{Binding Filme.Title}">
 
     <ScrollView>
         <StackLayout Padding="10">
