@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<basePage:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="AuvoMovies.Pages.FilmesPage"
+             x:Class="AuvoMovies.Pages.FavoritosPage"
              xmlns:viewModels="clr-namespace:AuvoMovies.ViewModels"
              xmlns:models="clr-namespace:AuvoMovies.Models"
-             xmlns:basePage="clr-namespace:AuvoMovies.Pages.Base"
-             x:DataType="viewModels:FilmesViewModel"
-             Title="Filmes">
+             x:DataType="viewModels:FavoritosViewModel"
+             Title="Favoritos">
 
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}">
 
@@ -31,4 +30,4 @@
         
     </RefreshView>
 
-</basePage:BasePage>
+</ContentPage>

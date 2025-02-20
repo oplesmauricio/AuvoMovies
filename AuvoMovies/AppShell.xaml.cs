@@ -10,6 +10,7 @@ namespace AuvoMovies
 
             Routing.RegisterRoute(nameof(FilmesPage), typeof(FilmesPage));
             Routing.RegisterRoute(nameof(FilmeDetailPage), typeof(FilmeDetailPage));
+            Routing.RegisterRoute(nameof(FavoritosPage), typeof(FavoritosPage));
         }
     }
 }

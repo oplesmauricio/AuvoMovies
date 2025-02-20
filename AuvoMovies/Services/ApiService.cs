@@ -5,8 +5,6 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AuvoMovies.Services.Interfaces;
-using AuvoMovies.Services;
-using Bumptech.Glide.Load.Model;
 
 namespace AuvoMovies.Services
 {

@@ -1,16 +1,14 @@
 using AuvoMovies.Models;
-using AuvoMovies.Pages.Base;
 using AuvoMovies.Services;
 using AuvoMovies.Services.Interfaces;
 using AuvoMovies.ViewModels;
 
 namespace AuvoMovies.Pages;
 
-public partial class FilmesPage : BasePage
+public partial class FavoritosPage : ContentPage
 {
-    private readonly IFilmeService _filmeService;
-    private readonly FilmesViewModel vm;
-    public FilmesPage(FilmesViewModel vm)
+    private readonly FavoritosViewModel vm;
+    public FavoritosPage(FavoritosViewModel vm)
 	{
 		InitializeComponent();
         BindingContext = this.vm = vm;
@@ -21,11 +19,11 @@ public partial class FilmesPage : BasePage
         try
         {
             base.OnAppearing();
-            //await this.vm.Autenticar(); TMDB modificou sua forma de acessar com token de leitura fixo por usuario
-            await this.vm.GetFilmesAsync();
+            await this.vm.BuscarFavoritosAsync();
         }
         catch (Exception)
         {
+            //TODO implementar telemetry azure aplciation insights
             await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes, chama o Maicon (se eu passar pode me chamar tb =D)", "Ok");
         }
     }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AuvoMovies.Controls.FlyoutHeader"
+             xmlns:controls="clr-namespace:AuvoMovies.Controls">
+    <StackLayout
+        Padding="30"
+        HorizontalOptions="Center"
+        Spacing="15"
+        VerticalOptions="Center">
+
+        <HorizontalStackLayout
+            Padding="0,15"
+            HorizontalOptions="Center"
+            Spacing="15">
+
+            <controls:RoundedCornerImage
+                Background="{DynamicResource White}"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                Source="logo_auvo.jpg"
+                Stroke="Transparent"
+                StrokeShape="{RoundRectangle CornerRadius=100}"
+                VerticalOptions="Center"
+                WidthRequest="200" />
+           
+        </HorizontalStackLayout>
+    </StackLayout>
+</ContentView>

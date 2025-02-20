@@ -17,6 +17,9 @@ namespace AuvoMovies
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("ionicons.ttf", "IonIcons");
+                    fonts.AddFont("icon.ttf", "MauiKitIcons");
+                    fonts.AddFont("material-icons-outlined-regular.otf", "MaterialDesign");
                 });
 
 #if DEBUG
@@ -32,6 +35,8 @@ namespace AuvoMovies
             builder.Services.AddSingleton<FilmesViewModel>();
             builder.Services.AddScoped<FilmeDetailPage>();
             builder.Services.AddScoped<FilmesDetailViewModel>();
+            builder.Services.AddScoped<FavoritosPage>();
+            builder.Services.AddScoped<FavoritosViewModel>();
 
 
             return builder.Build();

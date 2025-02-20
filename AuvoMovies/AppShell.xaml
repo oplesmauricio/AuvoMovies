@@ -5,12 +5,58 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AuvoMovies"
     xmlns:pages="clr-namespace:AuvoMovies.Pages"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:controls="clr-namespace:AuvoMovies.Controls"
+    Shell.TabBarIsVisible="False"
+    Shell.BackgroundColor="#827ECC"
+    Shell.FlyoutBackgroundImage="bg_purple_identidade.png"
+    Shell.FlyoutBackgroundImageAspect="AspectFill"
     Title="AuvoMovies">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate pages:FilmesPage}"
-        Route="FilmesPage" />
+    <Shell.FlyoutBackground>
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,1">
+            <GradientStop Offset="0.1" Color="#827ECC" />
+            <GradientStop Offset="1.0" Color="#FF8E2F2F" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackground>
+    <Shell.FlyoutBackdrop>
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,1">
+            <GradientStop Offset="0.1" Color="#ffffff" />
+            <GradientStop Offset="1.0" Color="#827ECC" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackdrop>
 
+    <Shell.FlyoutHeader>
+        <controls:FlyoutHeader />
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <controls:FlyoutFooter />
+    </Shell.FlyoutFooter>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Icon="perm_identity.png"
+                      Title="Filmes"
+                      ContentTemplate="{DataTemplate pages:FilmesPage}"
+                      Route="Filmes"
+            ></ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Icon="description.png"
+                      Title="Favoritos"
+                      ContentTemplate="{DataTemplate pages:FavoritosPage}"
+                      Route="Favoritos"
+        ></ShellContent>
+    </FlyoutItem>
+
+
+    <!--<FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Icon="note_add.png"
+                      Title="Conheca nosso consultorio"
+                      ContentTemplate="{DataTemplate pages:ConsultorioPage}"
+                      Route="Consultorio"
+        ></ShellContent>
+    </FlyoutItem>-->
 </Shell>

@@ -32,11 +32,14 @@ namespace AuvoMovies.ViewModels
         }
 
         [RelayCommand]
-        private void Favoritar()
+        private async void Favoritar()
         {
-            //await GetFilmesAsync();
+            var result = await _filmeService.Favoritar(filme.Id);
             //isRefreshing = false;
-            //testes = "depois dp refresh";
+            if (result.IsSuccess)
+                await Application.Current.MainPage.DisplayAlert("Adicionado", "Td certo!", "Ok");
+            else
+                await Application.Current.MainPage.DisplayAlert("Ops", "Ocorreu um erro ao adicionar o filme aos seus favotiros", "Ok");
         }
         //    async Task Favoritar()
         //    {

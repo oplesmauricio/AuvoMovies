@@ -8,6 +8,7 @@ namespace AuvoMovies.Services.Interfaces
 {
     public interface ISettings
     {
+        string UrlBaseTMDB { get; }
         string UrlApiTMDb { get; }
         string UrlApiAutenticacaoTMDb { get; }
         string UrlImagePathTMDB { get; }

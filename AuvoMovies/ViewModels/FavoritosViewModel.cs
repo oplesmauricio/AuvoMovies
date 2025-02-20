@@ -11,7 +11,7 @@ using MvvmHelpers.Commands;
 
 namespace AuvoMovies.ViewModels
 {
-    public partial class FilmesViewModel : ObservableObject
+    public partial class FavoritosViewModel : ObservableObject
     {
         private IFilmeService _filmeService;
         private ISettings _settings;
@@ -22,19 +22,15 @@ namespace AuvoMovies.ViewModels
         [ObservableProperty]
         public bool isBusy;
 
-        // Propriedade do comando
-        //public IRelayCommand RefreshCommand { get; }
-        public AsyncCommand RefreshCommand { get; }
-
-        public FilmesViewModel(IFilmeService filmeService, ISettings settings)
+        public FavoritosViewModel(IFilmeService filmeService, ISettings settings)
         {
             _filmeService = filmeService;
             _settings = settings;
         }
 
-        public async Task GetFilmesAsync()
+        public async Task BuscarFavoritosAsync()
         {
-            var result = await _filmeService.GetFilmesAsync();
+            var result = await _filmeService.BuscarFavoritosAsync();
 
             if (result.IsFailed)
                 await Application.Current.MainPage.DisplayAlert("", result.Errors.FirstOrDefault().Message, "");
@@ -46,29 +42,6 @@ namespace AuvoMovies.ViewModels
                 filme.PosterPath = _settings.UrlImagePathTMDB + filme.PosterPath;
                 filmes.Add(filme);
             }
-        }
-
-        public async Task Autenticar()
-        {
-            var result = await _filmeService.AutenticarAsync();
-
-            if (result.IsFailed)
-                await Application.Current.MainPage.DisplayAlert("", result.Errors.FirstOrDefault().Message, "");
-        }
-
-        //[RelayCommand]
-        //private void Refresh()
-        //{
-        //    //await GetFilmesAsync();
-        //    isRefreshing = false;
-        //    testes = "depois dp refresh";
-        //}
-        async Task Refresh()
-        {
-            IsBusy = true;
-            GetFilmesAsync();
-
-            IsBusy = false;
         }
     }
 }

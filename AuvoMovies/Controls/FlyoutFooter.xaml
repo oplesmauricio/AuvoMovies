@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AuvoMovies.Controls.FlyoutFooter"
+             xmlns:icons="clr-namespace:AuvoMovies.Views.FontIcons"
+             xmlns:sys="clr-namespace:System;assembly=netstandard">
+    <Grid Padding="30,30,30,15" ColumnDefinitions="*, Auto">
+
+        <!--  Copyright  -->
+        <HorizontalStackLayout
+            HorizontalOptions="Start"
+            Spacing="5"
+            VerticalOptions="Center">
+
+            <Image>
+                <Image.Source>
+                    <FontImageSource
+                        FontFamily="MauiKitIcons"
+                        Glyph="{x:Static icons:MauiIcons.Copyright}"
+                        Size="16"
+                        Color="{DynamicResource White}" />
+                </Image.Source>
+            </Image>
+
+            <Label Text="Marianna Assumpcao" TextColor="{DynamicResource White}" FontSize="Micro"/>
+            <Label Text=" - " TextColor="{DynamicResource White}" FontSize="Micro" />
+            <Label FontSize="Micro" Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:yyyy}'}" TextColor="{DynamicResource White}" />
+        </HorizontalStackLayout>
+
+        <!--  Version info  -->
+        <Border
+            Grid.Column="1"
+            Padding="10,0"
+            Background="{StaticResource White}"
+            HeightRequest="20"
+            HorizontalOptions="EndAndExpand"
+            Stroke="Transparent"
+            StrokeShape="{RoundRectangle CornerRadius=6}"
+            VerticalOptions="Center">
+            <Label
+                x:Name="labelVersion"
+                FontSize="Micro"
+                HorizontalOptions="Center"
+                TextColor="Black"
+                VerticalOptions="Center"
+                Text="1.0.0">
+            </Label>
+        </Border>
+    </Grid>
+</ContentView>
