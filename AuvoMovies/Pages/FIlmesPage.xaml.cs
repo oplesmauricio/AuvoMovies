@@ -5,8 +5,12 @@ using AuvoMovies.Services.Interfaces;
 using AuvoMovies.ViewModels;
 using FluentResults;
 
-namespace AuvoMovies.Pages;
+//#if ANDROID
+//using Plugin.Firebase.CloudMessaging;
+//#endif
 
+namespace AuvoMovies.Pages;
+    
 public partial class FilmesPage : BasePage
 {
     private readonly IFilmeService _filmeService;
@@ -22,10 +26,11 @@ public partial class FilmesPage : BasePage
         try
         {
             base.OnAppearing();
+            await NewMethod();
 
             if (!INternetConectada())
             {
-                if(vm.Filmes.Any())
+                if (vm.Filmes.Any())
                     await DisplayAlert("Voce esta sem internet", "No entanto, fique tranquilo, pode navegar normalmente pela lista que vc ja estava olhando e continuar favoritando, logo que a coenxao for reestabelecida, sincronizamos tudo ;)", "Ok");
                 else
                     await DisplayAlert("Voce esta sem internet", "Reestabelexa a conexao e tente novamente", "Ok");
@@ -41,6 +46,13 @@ public partial class FilmesPage : BasePage
         {
             await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes", "Ok");
         }
+    }
+
+    private static async Task NewMethod()
+    {
+        //await CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
+        //var token = await CrossFirebaseCloudMessaging.Current.GetTokenAsync();
+        //Console.WriteLine($"FCM token: {token}");
     }
 
     private async void OnMovieSelected(object sender, SelectionChangedEventArgs e)

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "638135384820",
+    "project_id": "auvomovies",
+    "storage_bucket": "auvomovies.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638135384820:android:7621480ca6d02512c5bca1",
+        "android_client_info": {
+          "package_name": "dev.mauricioribeiro.auvomovies"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVN-Soc0KMFC54DEWnl7cnYMjGyAhvuJw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
