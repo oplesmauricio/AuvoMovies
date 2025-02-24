@@ -65,7 +65,8 @@ public partial class FilmesPage : BasePage
             var filmeSelecionado = (Filme)e.CurrentSelection.FirstOrDefault();
             await Shell.Current.GoToAsync($"{nameof(FilmeDetailPage)}", true, new Dictionary<string, object>
             {
-                {"Filme",  filmeSelecionado}
+                {"Filme",  filmeSelecionado},
+                {"JaEstaFavoritado", false }
             });
         }
         catch (Exception ex)

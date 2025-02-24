@@ -11,7 +11,16 @@
             <Image x:Name="PosterImage" Source="{Binding Filme.PosterPath}"/>
             <Label x:Name="TitleLabel" FontAttributes="Bold" FontSize="24" Text="{Binding Filme.Title}" />
             <Label x:Name="OverviewLabel" FontSize="14" TextColor="Gray" Text="{Binding Filme.Overview}"/>
-            <Button Text="Adicionar como Favorito" Command="{Binding FavoritarCommand}"/>
+            <Button Text="Adicionar como Favorito" Command="{Binding FavoritarCommand}">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding JaEstaFavoritado}"
+                                 Value="True">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Text="Compartilhar" Command="{Binding CompartilharCommand}"/>
         </StackLayout>
     </ScrollView>
 

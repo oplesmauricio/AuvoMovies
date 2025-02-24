@@ -13,6 +13,7 @@ using MvvmHelpers.Commands;
 namespace AuvoMovies.ViewModels
 {
     [QueryProperty("Filme", "Filme")]
+    [QueryProperty("JaEstaFavoritado", "JaEstaFavoritado")]
     public partial class FilmesDetailViewModel : ObservableObject
     {
         private IFilmeService _filmeService;
@@ -24,6 +25,9 @@ namespace AuvoMovies.ViewModels
 
         [ObservableProperty]
         public bool isBusy;
+
+        [ObservableProperty]
+        public bool jaEstaFavoritado;
 
         //public IRelayCommand FavoritarCommand { get; }
 
@@ -47,11 +51,17 @@ namespace AuvoMovies.ViewModels
                 _repository.Delete(filme);
             }
         }
-        //    async Task Favoritar()
-        //    {
-        //        IsBusy = true;
 
-        //        IsBusy = false;
-        //    }
+        public async Task VerificarFavorito()
+        {
+            //acredito que aqui seria melhor uma api apenas para verificar se ele eh ou nao favorito, mas esse endpoint nao existe no TMDB
+            var filmes = await _filmeService.BuscarFavoritosAsync();
+
+            if (filmes.IsSuccess)
+                if (filmes.Value.Any(m => m.Id == Filme.Id))
+                    this.jaEstaFavoritado = true;
+
+            OnPropertyChanged("JaEstaFavoritado");
+        }
     }
 }
