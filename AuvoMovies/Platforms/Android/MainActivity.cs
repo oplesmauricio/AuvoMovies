@@ -11,8 +11,9 @@ namespace AuvoMovies
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            HandleIntent(Intent);
-            CreateNotificationChannelIfNeeded();
+            //HandleIntent(Intent);
+            //CreateNotificationChannelIfNeeded();
+            //PegarDeviceToken();
         }
 
         protected override void OnNewIntent(Intent intent)
@@ -41,7 +42,13 @@ namespace AuvoMovies
             var channel = new NotificationChannel(channelId, "General", NotificationImportance.Default);
             notificationManager.CreateNotificationChannel(channel);
             FirebaseCloudMessagingImplementation.ChannelId = channelId;
-            //FirebaseCloudMessagingImplementation.SmallIconRef = Resource.Drawable.ic_push_small;
+        }
+
+        private async void PegarDeviceToken()
+        {
+            await CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
+            var token = await CrossFirebaseCloudMessaging.Current.GetTokenAsync();
+            Preferences.Set("DeviceToken", token);
         }
     }
 }

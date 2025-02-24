@@ -5,7 +5,12 @@ using AuvoMovies.Services;
 using AuvoMovies.Services.Interfaces;
 using AuvoMovies.ViewModels;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 
+#if ANDROID
+using Plugin.Firebase.CloudMessaging;
+using Plugin.Firebase.Core.Platforms.Android;
+#endif
 namespace AuvoMovies
 {
     public static class MauiProgram
@@ -41,7 +46,23 @@ namespace AuvoMovies
             builder.Services.AddScoped<FavoritosViewModel>();
 
 
+#if ANDROID
+            builder.RegisterFirebaseServices();
+#endif
+
             return builder.Build();
         }
+
+#if ANDROID
+         private static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
+        {
+            builder.ConfigureLifecycleEvents(events => {
+                    events.AddAndroid(android => android.OnCreate((activity, _) =>
+                    CrossFirebase.Initialize(activity)));
+            });
+
+            return builder;
+        }
+#endif
     }
 }

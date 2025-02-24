@@ -50,9 +50,12 @@ public partial class FilmesPage : BasePage
 
     private static async Task NewMethod()
     {
-        //await CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
-        //var token = await CrossFirebaseCloudMessaging.Current.GetTokenAsync();
-        //Console.WriteLine($"FCM token: {token}");
+        if (Preferences.ContainsKey("DeviceToken"))
+        {
+            var deviceToken = Preferences.Get("DeviceToken", "");
+
+
+        }
     }
 
     private async void OnMovieSelected(object sender, SelectionChangedEventArgs e)

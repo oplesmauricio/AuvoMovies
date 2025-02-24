@@ -6,12 +6,22 @@
     xmlns:local="clr-namespace:AuvoMovies"
     xmlns:pages="clr-namespace:AuvoMovies.Pages"
     xmlns:controls="clr-namespace:AuvoMovies.Controls"
-    Shell.TabBarIsVisible="False"
+    Shell.TabBarIsVisible="{OnPlatform iOS=True, Android=False}"
     Shell.BackgroundColor="#827ECC"
     Shell.FlyoutBackgroundImage="bg_purple_identidade.png"
     Shell.FlyoutBackgroundImageAspect="AspectFill"
     Title="AuvoMovies">
 
+
+    <Shell.FlyoutBehavior>
+        <OnPlatform x:TypeArguments="FlyoutBehavior">
+            <On Platform="Android" Value="Flyout" />
+            <On Platform="iOS" Value="Disabled" />
+        </OnPlatform>
+    </Shell.FlyoutBehavior>
+
+
+    
     <Shell.FlyoutBackground>
         <LinearGradientBrush StartPoint="0,0"
                              EndPoint="1,1">
@@ -41,9 +51,7 @@
                       ContentTemplate="{DataTemplate pages:FilmesPage}"
                       Route="Filmes"
             ></ShellContent>
-    </FlyoutItem>
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Icon="description.png"
                       Title="Favoritos"
                       ContentTemplate="{DataTemplate pages:FavoritosPage}"
@@ -59,4 +67,23 @@
                       Route="Consultorio"
         ></ShellContent>
     </FlyoutItem>-->
+
+
+    <!--Tabbar para IOS-->
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" IsVisible="{OnPlatform Android=False, iOS=True}">
+
+        <ShellContent Icon="perm_identity.png"
+              Title="Filmes"
+              ContentTemplate="{DataTemplate pages:FilmesPage}"
+              Route="Filmes"/>
+
+        <ShellContent Icon="description.png"
+              Title="Favoritos"
+              ContentTemplate="{DataTemplate pages:FavoritosPage}"
+              Route="Favoritos"/>
+    </FlyoutItem>
+
+
+
+
 </Shell>
