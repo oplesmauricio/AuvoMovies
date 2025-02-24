@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics.Contracts;
-using AuvoMovies.Infra.Interfaces;
+﻿using AuvoMovies.Infra.Interfaces;
 using AuvoMovies.Models;
 using AuvoMovies.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MvvmHelpers.Commands;
 
 
 namespace AuvoMovies.ViewModels
@@ -61,7 +56,7 @@ namespace AuvoMovies.ViewModels
                 if (filmes.Value.Any(m => m.Id == Filme.Id))
                     this.jaEstaFavoritado = true;
 
-            OnPropertyChanged("JaEstaFavoritado");
+            OnPropertyChanged(nameof(JaEstaFavoritado));
         }
     }
 }

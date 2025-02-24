@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics.Contracts;
+﻿using System.Collections.ObjectModel;
 using AuvoMovies.Models;
 using AuvoMovies.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MvvmHelpers.Commands;
 using FluentResults;
 using AuvoMovies.Infra.Interfaces;
 
@@ -23,11 +19,7 @@ namespace AuvoMovies.ViewModels
         public ObservableCollection<Filme> filmes = new();
 
         [ObservableProperty]
-        public bool isBusy;
-
-        // Propriedade do comando
-        //public IRelayCommand RefreshCommand { get; }
-        public AsyncCommand RefreshCommand { get; }
+        public bool isRefreshing;
 
         public FilmesViewModel(IFilmeService filmeService, ISettings settings, IRepository repository)
         {
@@ -60,19 +52,12 @@ namespace AuvoMovies.ViewModels
                 await Application.Current.MainPage.DisplayAlert("", result.Errors.FirstOrDefault().Message, "");
         }
 
-        //[RelayCommand]
-        //private void Refresh()
-        //{
-        //    //await GetFilmesAsync();
-        //    isRefreshing = false;
-        //    testes = "depois dp refresh";
-        //}
-        async Task Refresh()
+        [RelayCommand]
+        private async void Refresh()
         {
-            IsBusy = true;
-            GetFilmesAsync();
-
-            IsBusy = false;
+            await GetFilmesAsync();
+            isRefreshing = false;
+            OnPropertyChanged(nameof(IsRefreshing));
         }
 
         public async Task SincronizarSQLiteApi()

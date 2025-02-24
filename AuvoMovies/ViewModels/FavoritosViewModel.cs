@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics.Contracts;
+﻿using System.Collections.ObjectModel;
 using AuvoMovies.Infra.Interfaces;
 using AuvoMovies.Models;
 using AuvoMovies.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MvvmHelpers.Commands;
 
 
 namespace AuvoMovies.ViewModels
@@ -22,7 +18,7 @@ namespace AuvoMovies.ViewModels
         public ObservableCollection<Filme> filmes = new();
 
         [ObservableProperty]
-        public bool isBusy;
+        public bool isRefreshing;
 
         public FavoritosViewModel(IFilmeService filmeService, ISettings settings, IRepository repository)
         {
@@ -56,6 +52,14 @@ namespace AuvoMovies.ViewModels
                     filmes.Add(filmeFavorito);
                 }
             }
+        }
+
+        [RelayCommand]
+        private async void Refresh()
+        {
+            await BuscarFavoritosAsync();
+            isRefreshing = false;
+            OnPropertyChanged(nameof(IsRefreshing));
         }
     }
 }
