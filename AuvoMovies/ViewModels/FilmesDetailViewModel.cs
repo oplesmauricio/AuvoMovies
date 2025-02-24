@@ -44,6 +44,7 @@ namespace AuvoMovies.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert("Adicionado", "Td certo!", "Ok");
                 _repository.Delete(filme);
+                await Shell.Current.Navigation.PopAsync();
             }
         }
 
