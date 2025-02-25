@@ -112,17 +112,6 @@ namespace AuvoMovies.Services
             return Result.Fail($"{response.HttpStatus} - {response.Mensagem}");
         }
 
-        // Usar o token de Sessão para autenticar o usuário e realizar outras requisições
-        //public async Task<string> GetUserInfoAsync(string sessionToken)
-        //{
-        //    var url = $"{BaseUrl}/account?api_key={ApiKey}&session_id={sessionToken}";
-        //    var response = await _httpClient.GetAsync(url);
-        //    response.EnsureSuccessStatusCode();
-
-        //    var jsonResponse = await response.Content.ReadAsStringAsync();
-        //    return jsonResponse;
-        //}
-
         public async Task<Result<string>> ValidarToken(string requestToken, string username, string password)
         {
             var body = new Dictionary<string, string>
@@ -138,22 +127,6 @@ namespace AuvoMovies.Services
                 return response.Resposta.request_token;
 
             return Result.Fail($"{response.HttpStatus} - {response.Mensagem}");
-
-            //var url = $"https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key={ApiKey}";
-            //var content = new StringContent(
-            //    $"{{\"username\": \"{username}\", \"password\": \"{password}\", \"request_token\": \"{requestToken}\"}}",
-            //    Encoding.UTF8,
-            //    "application/json"
-            //);
-
-            //var response = await _httpClient.PostAsync(url, content);
-            //response.EnsureSuccessStatusCode();
-
-            //var jsonResponse = await response.Content.ReadAsStringAsync();
-            //var jsonDocument = JsonDocument.Parse(jsonResponse);
-
-            //var sessionToken = jsonDocument.RootElement.GetProperty("request_token").GetString();
-            //return sessionToken;
         }
 
         public async Task<Result<string>> Logar(string username, string password)

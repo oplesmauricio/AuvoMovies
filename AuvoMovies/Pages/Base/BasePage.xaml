@@ -5,13 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:AuvoMovies.Controls"
     x:Name="Root"
-    NavigationPage.HasBackButton="{OnPlatform Default='True',
-                                              WinUI='False'}"
     BackgroundColor="White">
 
     <Grid RowDefinitions="*, Auto">
 
-        <!--  Grid to contain Page Content  -->
         <Grid x:Name="PageContentGrid" IgnoreSafeArea="True" />
 
     </Grid>

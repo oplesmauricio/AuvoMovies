@@ -9,10 +9,6 @@
     xmlns:viewodels="clr-namespace:AuvoMovies.ViewModels"
     Title="Enviar Notificacao">
 
-    <!--<ContentPage.BindingContext>
-        <viewodels:EnviarNotificacaoViewModel />
-    </ContentPage.BindingContext>-->
-
     <ScrollView VerticalScrollBarVisibility="Default">
         <Grid>
 

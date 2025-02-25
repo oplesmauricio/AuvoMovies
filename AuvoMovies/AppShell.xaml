@@ -65,16 +65,6 @@
         ></ShellContent>
     </FlyoutItem>
 
-
-    <!--<FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Icon="note_add.png"
-                      Title="Conheca nosso consultorio"
-                      ContentTemplate="{DataTemplate pages:ConsultorioPage}"
-                      Route="Consultorio"
-        ></ShellContent>
-    </FlyoutItem>-->
-
-
     <!--Tabbar para IOS-->
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" IsVisible="{OnPlatform Android=False, iOS=True}">
 

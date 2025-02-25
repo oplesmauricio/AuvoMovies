@@ -1,8 +1,9 @@
+using AuvoMovies.Pages.Base;
 using AuvoMovies.Services.Interfaces;
 
 namespace AuvoMovies.Pages;
 
-public partial class LoginPage : ContentPage
+public partial class LoginPage : BasePage
 {
     private readonly IFilmeService _service;
     private readonly ISettings _settings;
@@ -11,11 +12,6 @@ public partial class LoginPage : ContentPage
         InitializeComponent();
         _service = service;
         _settings = settings;
-    }
-
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
     }
 
     protected override void OnDisappearing()
@@ -30,6 +26,11 @@ public partial class LoginPage : ContentPage
         {
             actIndicator.IsRunning = true;
             actIndicator.IsVisible = true;
+
+            if (!INternetConectada())
+            {
+                await DisplayAlert("Voce esta sem internet", "Reestabelexa a conexao e tente novamente", "Ok");
+            }
 
 #if DEBUG
             this.Usuario.Text = "mauriciodevelopermaui";
@@ -83,11 +84,6 @@ public partial class LoginPage : ContentPage
             actIndicator.IsRunning = false;
             actIndicator.IsVisible = false;
         }
-    }
-
-    private async void GoBack_Tapped(object sender, EventArgs e)
-    {
-        await Navigation.PopModalAsync();
     }
 
     private void PageUnloaded(object sender, EventArgs e)

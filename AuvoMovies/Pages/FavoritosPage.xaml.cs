@@ -22,7 +22,7 @@ public partial class FavoritosPage : ContentPage
         catch (Exception)
         {
             //TODO implementar telemetry azure aplciation insights
-            await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes, chama o Maicon (se eu passar pode me chamar tb =D)", "Ok");
+            await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes", "Ok");
         }
     }
 
@@ -39,7 +39,7 @@ public partial class FavoritosPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes, chama o Maicon (se eu passar pode me chamar tb =D)", "Ok");
+            await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes", "Ok");
         }
     }
 }

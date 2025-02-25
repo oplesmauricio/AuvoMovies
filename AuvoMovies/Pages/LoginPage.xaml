@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<basePage:BasePage
              x:Class="AuvoMovies.Pages.LoginPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,9 +8,7 @@
     xmlns:icons="clr-namespace:AuvoMovies.Views.FontIcons"
     xmlns:traducoes="clr-namespace:AuvoMovies.Resources.Translations"
     xmlns:handlers="clr-namespace:AuvoMovies.Handlers"
-    NavigationPage.HasBackButton="False"
-    NavigationPage.HasNavigationBar="False"
-    Unloaded="PageUnloaded">
+             xmlns:basePage="clr-namespace:AuvoMovies.Pages.Base">
 
     <Grid>
         <toolkit:MediaElement
@@ -176,4 +174,4 @@
         </ScrollView>
 
     </Grid>
-</ContentPage>
+</basePage:BasePage>

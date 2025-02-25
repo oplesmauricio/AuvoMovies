@@ -13,7 +13,5 @@ namespace AuvoMovies.Services.Interfaces
         Task<Result<string>> CriarTokenSessaoAsync(string requestToken);
 
         Task<Result<string>> ValidarToken(string requestToken, string username, string password);
-
-        //Task<Result> Logar(string username, string password);
     }
 }
