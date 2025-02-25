@@ -1,6 +1,4 @@
 using AuvoMovies.Models;
-using AuvoMovies.Services;
-using AuvoMovies.Services.Interfaces;
 using AuvoMovies.ViewModels;
 
 namespace AuvoMovies.Pages;
@@ -9,10 +7,10 @@ public partial class FavoritosPage : ContentPage
 {
     private readonly FavoritosViewModel vm;
     public FavoritosPage(FavoritosViewModel vm)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         BindingContext = this.vm = vm;
-	}
+    }
 
     protected override async void OnAppearing()
     {

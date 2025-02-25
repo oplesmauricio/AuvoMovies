@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using AuvoMovies.Infra.Interfaces;
 using AuvoMovies.Models;
 using AuvoMovies.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FluentResults;
-using AuvoMovies.Infra.Interfaces;
 
 
 namespace AuvoMovies.ViewModels
@@ -70,8 +70,8 @@ namespace AuvoMovies.ViewModels
 
         private async Task<Result> Sincronizar(List<Filme> filmesLocais)
         {
-            foreach ( var filme in filmesLocais)
-                if((await _filmeService.Favoritar(filme.Id)).IsSuccess)
+            foreach (var filme in filmesLocais)
+                if ((await _filmeService.Favoritar(filme.Id)).IsSuccess)
                     _repository.Delete(filme);
 
             return Result.Ok();

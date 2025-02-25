@@ -19,9 +19,6 @@ namespace AuvoMovies.ViewModels
         public Filme filme;
 
         [ObservableProperty]
-        public bool isBusy;
-
-        [ObservableProperty]
         public bool jaEstaFavoritado;
 
         public FilmesDetailViewModel(IFilmeService filmeService, ISettings settings, IRepository repository)
@@ -37,14 +34,14 @@ namespace AuvoMovies.ViewModels
             _repository.Salvar(filme);
 
             var result = await _filmeService.Favoritar(filme.Id);
-            //TODO
-            //isRefreshing = false;
             if (result.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert("Adicionado", "Td certo!", "Ok");
                 _repository.Delete(filme);
                 await Shell.Current.Navigation.PopAsync();
             }
+            else
+                await Application.Current.MainPage.DisplayAlert("Ops", "Tente novamente daqui a pouco", "Ok");
         }
 
         [RelayCommand]

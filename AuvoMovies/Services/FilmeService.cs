@@ -2,7 +2,6 @@
 using AuvoMovies.Models.Responses;
 using AuvoMovies.Services.Interfaces;
 using FluentResults;
-using FluentResults.Extensions;
 
 namespace AuvoMovies.Services
 {
@@ -60,7 +59,7 @@ namespace AuvoMovies.Services
                 { "favorite", "true" }
             };
 
-            var response = await _apiService.PostAsync<TMBDList>(body, _settings.UrlBaseTMDB + FAVORITAR + "?api_key=" + _settings.ApiKeyTMDB, _headers);
+            var response = await _apiService.PostAsync<TMBDList>(body, _settings.UrlBaseTMDB + FAVORITAR + "?session_id=" + _settings.Token + "&api_key=" + _settings.ApiKeyTMDB, _headers);
 
             if (response.Sucesso)
                 return Result.Ok();
@@ -97,7 +96,7 @@ namespace AuvoMovies.Services
             return Result.Fail($"{response.HttpStatus} - {response.Mensagem}");
         }
 
-        
+
         public async Task<Result<string>> CriarTokenSessaoAsync(string requestToken)
         {
             var body = new Dictionary<string, string>

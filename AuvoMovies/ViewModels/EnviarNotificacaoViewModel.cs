@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using AuvoMovies.Infra.Interfaces;
-using AuvoMovies.Models;
-using AuvoMovies.Services.Interfaces;
+﻿using AuvoMovies.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -26,7 +23,7 @@ namespace AuvoMovies.ViewModels
         [RelayCommand]
         private async void EnviarNotificacao()
         {
-            if(string.IsNullOrEmpty(tituloNotificacao))
+            if (string.IsNullOrEmpty(tituloNotificacao))
             {
                 await Application.Current.MainPage.DisplayAlert("Carissimo", "Escreva um titulo pra notificacao", "Ok");
                 return;

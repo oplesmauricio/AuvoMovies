@@ -30,7 +30,7 @@ namespace AuvoMovies.ViewModels
         public async Task BuscarFavoritosAsync()
         {
             filmes.Clear();
-            
+
             var filmesLOcais = _repository.BUscar();
             AtribuirAListaDaTela(filmesLOcais);
 
@@ -46,7 +46,7 @@ namespace AuvoMovies.ViewModels
         {
             foreach (var filmeFavorito in favoritos)
             {
-                if(!filmes.Any(m => m.Id == filmeFavorito.Id))
+                if (!filmes.Any(m => m.Id == filmeFavorito.Id))
                 {
                     filmeFavorito.PosterPath = _settings.UrlImagePathTMDB + filmeFavorito.PosterPath;
                     filmes.Add(filmeFavorito);

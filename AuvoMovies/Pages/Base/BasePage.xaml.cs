@@ -18,7 +18,7 @@ public partial class BasePage : ContentPage
         await Navigation.PopAsync();
     }
 
-    public static BindableProperty BaseTitleProperty = 
+    public static BindableProperty BaseTitleProperty =
         BindableProperty.Create(
             nameof(BaseTitle),
             typeof(string),

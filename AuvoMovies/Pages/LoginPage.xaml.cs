@@ -1,5 +1,4 @@
 using AuvoMovies.Services.Interfaces;
-using AuvoMovies.ViewModels;
 
 namespace AuvoMovies.Pages;
 
@@ -32,7 +31,12 @@ public partial class LoginPage : ContentPage
             actIndicator.IsRunning = true;
             actIndicator.IsVisible = true;
 
-            if(String.IsNullOrEmpty(this.Usuario.Text))
+#if DEBUG
+            this.Usuario.Text = "mauriciodevelopermaui";
+            this.Senha.Text = "1234";
+#endif
+
+            if (String.IsNullOrEmpty(this.Usuario.Text))
             {
                 await DisplayAlert("Carissimo", "Vc precisa digitar um usuario meu jovem", "Ok");
                 return;

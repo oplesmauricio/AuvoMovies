@@ -42,22 +42,6 @@ namespace AuvoMovies
             builder.Logging.AddDebug();
 #endif
 
-            //builder.Services.AddSingleton<IApiService, ApiService>();
-            //builder.Services.AddSingleton<IFilmeService, FilmeService>();
-            //builder.Services.AddSingleton<IRepository, Repository>();
-            //builder.Services.AddSingleton<ISettings, Settings>();
-            //builder.Services.AddSingleton<IFirebaseService, FirebaseService>();
-
-            //builder.Services.AddSingleton<FilmesPage>();
-            //builder.Services.AddSingleton<FilmesViewModel>();
-            //builder.Services.AddScoped<FilmeDetailPage>();
-            //builder.Services.AddScoped<FilmesDetailViewModel>();
-            //builder.Services.AddScoped<FavoritosPage>();
-            //builder.Services.AddScoped<FavoritosViewModel>();
-            //builder.Services.AddScoped<LoginPage>();
-            //builder.Services.AddScoped<EnviarNotificacaoPage>();
-            //builder.Services.AddScoped<EnviarNotificacaoViewModel>();
-
             return builder.Build();
         }
 

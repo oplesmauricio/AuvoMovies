@@ -2,9 +2,6 @@
 using AuvoMovies.Models;
 using AuvoMovies.Services.Interfaces;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace AuvoMovies.Infra
 {
@@ -32,7 +29,7 @@ namespace AuvoMovies.Infra
         {
             using (var db = new SQLiteConnection(dbPath))
             {
-                db.Insert(user);
+                db.InsertOrReplace(user);
             }
         }
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AuvoMovies.Models.Sends;
-using AuvoMovies.Services.Interfaces;
+﻿using AuvoMovies.Services.Interfaces;
 using FirebaseAdmin;
 using FirebaseAdmin.Messaging;
 using Google.Apis.Auth.OAuth2;
@@ -17,7 +11,7 @@ namespace AuvoMovies.Services
 
         public FirebaseService()
         {
-            
+
         }
 
         public async Task EnviarNotificacao(string titulo, string decricao)

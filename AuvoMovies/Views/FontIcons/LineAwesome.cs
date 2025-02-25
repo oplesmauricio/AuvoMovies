@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui;
-
-namespace AuvoMovies.Views.FontIcons
+﻿namespace AuvoMovies.Views.FontIcons
 {
     static class LineAwesome
     {

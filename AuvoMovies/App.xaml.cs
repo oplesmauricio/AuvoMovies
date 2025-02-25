@@ -2,7 +2,6 @@
 using AuvoMovies.Handlers;
 using AuvoMovies.Pages;
 using AuvoMovies.Services.Interfaces;
-using AuvoMovies.ViewModels;
 
 
 #if ANDROID

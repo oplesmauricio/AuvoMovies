@@ -1,33 +1,26 @@
 using AuvoMovies.Models;
-using AuvoMovies.Models.Responses;
-using AuvoMovies.Models.Sends;
 using AuvoMovies.Pages.Base;
-using AuvoMovies.Services;
 using AuvoMovies.Services.Interfaces;
 using AuvoMovies.ViewModels;
-using FirebaseAdmin;
-using FirebaseAdmin.Messaging;
-using FluentResults;
-using Google.Apis.Auth.OAuth2;
 
 //#if ANDROID
 //using Plugin.Firebase.CloudMessaging;
 //#endif
 
 namespace AuvoMovies.Pages;
-    
+
 public partial class FilmesPage : BasePage
 {
     private readonly IFilmeService _filmeService;
     private readonly FilmesViewModel vm;
     private readonly ISettings _settings;
     public FilmesPage(FilmesViewModel vm, IFilmeService service, ISettings _settings)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         BindingContext = this.vm = vm;
         this._filmeService = service;
         this._settings = _settings;
-	}
+    }
 
     protected override async void OnAppearing()
     {

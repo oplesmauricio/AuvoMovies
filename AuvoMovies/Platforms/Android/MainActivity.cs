@@ -1,10 +1,10 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Plugin.Firebase.CloudMessaging;
-using Android.Content;
 using Android.Views;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+using Plugin.Firebase.CloudMessaging;
 namespace AuvoMovies
 {
     [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]

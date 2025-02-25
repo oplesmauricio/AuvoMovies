@@ -1,6 +1,3 @@
-using AuvoMovies.Models;
-using AuvoMovies.Services;
-using AuvoMovies.Services.Interfaces;
 using AuvoMovies.ViewModels;
 
 namespace AuvoMovies.Pages;
