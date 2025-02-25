@@ -3,24 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="AuvoMovies.Pages.FilmeDetailPage"
              xmlns:models="clr-namespace:AuvoMovies.Models"
+             xmlns:controls="clr-namespace:AuvoMovies.Controls"
+             xmlns:traducoes="clr-namespace:AuvoMovies.Resources.Translations"
+             xmlns:icons="clr-namespace:AuvoMovies.Views.FontIcons"
              x:DataType="models:Filme"
              Title="{Binding Filme.Title}">
 
     <ScrollView>
-        <StackLayout Padding="10">
-            <Image x:Name="PosterImage" Source="{Binding Filme.PosterPath}"/>
-            <Label x:Name="TitleLabel" FontAttributes="Bold" FontSize="24" Text="{Binding Filme.Title}" />
-            <Label x:Name="OverviewLabel" FontSize="14" TextColor="Gray" Text="{Binding Filme.Overview}"/>
-            <Button Text="Adicionar como Favorito" Command="{Binding FavoritarCommand}">
+
+        <StackLayout Padding="0" Spacing="0">
+
+            <Image
+                    Aspect="AspectFill"
+                    HeightRequest="367"
+                    HorizontalOptions="Center"
+                    Source="{Binding Filme.PosterPath}"
+                    VerticalOptions="Start" />
+
+            <Border
+                    Margin="20,50,20,0"
+                    Padding="20,16"
+                    Stroke="{DynamicResource FrameBorder}"
+                    StrokeShape="{RoundRectangle CornerRadius=20}">
+                <StackLayout Spacing="10">
+
+
+                    <Label
+                        FontSize="15"
+                        Text="{Binding Filme.ReleaseDate}"
+                        TextColor="{DynamicResource BaseLightTextColor}"
+                        VerticalOptions="Center" />
+
+                    <Label Text="{Binding Filme.Overview}" />
+
+                </StackLayout>
+            </Border>
+
+            <Button
+                    Margin="20,0"
+                    BackgroundColor="{DynamicResource SecondaryColor}"
+                    CornerRadius="14"
+                    FontSize="13"
+                    HeightRequest="44"
+                    HorizontalOptions="Fill"
+                    Text="{x:Static traducoes:Traducoes.BtnCompartilhar}"
+                    TextColor="{DynamicResource White}"
+                    VerticalOptions="Center" 
+                    Command="{Binding CompartilharCommand}"/>
+
+            <Button 
+                 Text="{x:Static traducoes:Traducoes.BtnAdicionarFavorito}" 
+                 Command="{Binding FavoritarCommand}"
+                 Margin="20,30"
+                 BackgroundColor="{DynamicResource SecondaryColor}"
+                 CornerRadius="14"
+                 FontSize="13"
+                 HeightRequest="44"
+                 HorizontalOptions="Fill">
                 <Button.Triggers>
                     <DataTrigger TargetType="Button"
-                                 Binding="{Binding JaEstaFavoritado}"
-                                 Value="True">
+                     Binding="{Binding JaEstaFavoritado}"
+                     Value="True">
                         <Setter Property="IsVisible" Value="False"/>
                     </DataTrigger>
                 </Button.Triggers>
             </Button>
-            <Button Text="Compartilhar" Command="{Binding CompartilharCommand}"/>
         </StackLayout>
     </ScrollView>
 

@@ -70,6 +70,24 @@ namespace AuvoMovies.Resources.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adicionar como Favorito.
+        /// </summary>
+        internal static string BtnAdicionarFavorito {
+            get {
+                return ResourceManager.GetString("BtnAdicionarFavorito", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compartilhar.
+        /// </summary>
+        internal static string BtnCompartilhar {
+            get {
+                return ResourceManager.GetString("BtnCompartilhar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descricao da notificacao.
         /// </summary>
         internal static string DescricaoNotificacao {

@@ -120,6 +120,12 @@
   <data name="BemVindo" xml:space="preserve">
     <value>Welcome</value>
   </data>
+  <data name="BtnAdicionarFavorito" xml:space="preserve">
+    <value>Add Favorite</value>
+  </data>
+  <data name="BtnCompartilhar" xml:space="preserve">
+    <value>Share</value>
+  </data>
   <data name="DescricaoNotificacao" xml:space="preserve">
     <value>Notification Description</value>
   </data>

@@ -4,6 +4,7 @@
              x:Class="AuvoMovies.Pages.FavoritosPage"
              xmlns:viewModels="clr-namespace:AuvoMovies.ViewModels"
              xmlns:models="clr-namespace:AuvoMovies.Models"
+             xmlns:controls="clr-namespace:AuvoMovies.Controls"
              x:DataType="viewModels:FavoritosViewModel"
              Title="Favoritos">
 
@@ -12,17 +13,72 @@
         <CollectionView ItemsSource="{Binding Filmes}"  SelectionMode="Single" SelectionChanged="OnMovieSelected">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Filme">
-                    <Grid Padding="10" HeightRequest="150">
+
+                    <Grid
+                       x:Name="grid"
+                       Padding="5,10"
+                       BackgroundColor="{DynamicResource MainWrapperBackgroundColor}"
+                       ColumnSpacing="15"
+                       RowSpacing="5">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="24" />
+                            <RowDefinition Height="16" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <Image Source="{Binding PosterPath}" HeightRequest="120" WidthRequest="80"/>
-                        <StackLayout Grid.Row="1" Padding="10">
-                            <Label Text="{Binding Title}" FontAttributes="Bold"/>
-                            <Label Text="{Binding ReleaseDate}" FontSize="12" TextColor="Gray"/>
-                        </StackLayout>
+                        <Grid.Triggers>
+                            <DataTrigger
+                               Binding="{Binding Source={x:Reference grid}, Path=BindingContext.IsSelected}"
+                               TargetType="Grid"
+                               Value="False">
+                                <Setter Property="BackgroundColor" Value="{DynamicResource BasePageColor}" />
+                            </DataTrigger>
+                            <DataTrigger
+                               Binding="{Binding Source={x:Reference grid}, Path=BindingContext.IsSelected}"
+                               TargetType="Grid"
+                               Value="True">
+                                <Setter Property="BackgroundColor" Value="Transparent" />
+                            </DataTrigger>
+                        </Grid.Triggers>
+
+                        <controls:RoundedCornerImage
+                           Grid.Row="0"
+                           Grid.RowSpan="3"
+                           HeightRequest="100"
+                           Source="{Binding PosterPath}"
+                           Stroke="{StaticResource FrameBorder}"
+                           StrokeShape="{RoundRectangle CornerRadius=12}"
+                           StrokeThickness="1" />
+
+                        <Label
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           FontAttributes="Bold"
+                           FontSize="16"
+                           LineBreakMode="TailTruncation"
+                           Text="{Binding Title}"
+                           TextColor="{DynamicResource BaseTextColor}" />
+
+                        <Label
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           FontSize="12"
+                           Opacity=".7"
+                           Text="{Binding ReleaseDate}"
+                           TextColor="{DynamicResource PrimaryColor}" />
+
+                        <Label
+                           Grid.Row="2"
+                           Grid.Column="1"
+                           FontSize="12"
+                           Text="{Binding Overview}"
+                           TextColor="{DynamicResource BaseLightTextColor}" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
