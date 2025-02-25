@@ -46,10 +46,10 @@ namespace AuvoMovies.ViewModels
 
         public async Task Autenticar()
         {
-            var result = await _filmeService.AutenticarAsync();
+            //var result = await _filmeService.AutenticarAsync();
 
-            if (result.IsFailed)
-                await Application.Current.MainPage.DisplayAlert("", result.Errors.FirstOrDefault().Message, "");
+            //if (result.IsFailed)
+            //    await Application.Current.MainPage.DisplayAlert("", result.Errors.FirstOrDefault().Message, "");
         }
 
         [RelayCommand]

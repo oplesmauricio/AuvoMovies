@@ -42,6 +42,14 @@ namespace AuvoMovies.Infra
             }
         }
 
+        public Filme BUscarPOrId(int id)
+        {
+            using (var db = new SQLiteConnection(dbPath))
+            {
+                return db.Table<Filme>().Where(m => m.Id == id).FirstOrDefault();
+            }
+        }
+
         public void Delete(Filme filme)
         {
             using (var db = new SQLiteConnection(dbPath))

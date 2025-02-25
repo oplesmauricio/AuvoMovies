@@ -4,6 +4,7 @@ using AuvoMovies.Pages;
 using AuvoMovies.Services;
 using AuvoMovies.Services.Interfaces;
 using AuvoMovies.ViewModels;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 
@@ -20,17 +21,20 @@ namespace AuvoMovies
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("ionicons.ttf", "IonIcons");
+                    fonts.AddFont("line-awesome.ttf", "LineAwesome");
                     fonts.AddFont("icon.ttf", "MauiKitIcons");
                     fonts.AddFont("material-icons-outlined-regular.otf", "MaterialDesign");
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             builder.Services.AddSingleton<IApiService, ApiService>();
@@ -44,6 +48,8 @@ namespace AuvoMovies
             builder.Services.AddScoped<FilmesDetailViewModel>();
             builder.Services.AddScoped<FavoritosPage>();
             builder.Services.AddScoped<FavoritosViewModel>();
+            builder.Services.AddScoped<LoginPage>();
+            //builder.Services.AddScoped<LoginViewModel>();
 
 
 #if ANDROID
@@ -54,11 +60,12 @@ namespace AuvoMovies
         }
 
 #if ANDROID
-         private static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
+        private static MauiAppBuilder RegisterFirebaseServices(this MauiAppBuilder builder)
         {
-            builder.ConfigureLifecycleEvents(events => {
-                    events.AddAndroid(android => android.OnCreate((activity, _) =>
-                    CrossFirebase.Initialize(activity)));
+            builder.ConfigureLifecycleEvents(events =>
+            {
+                events.AddAndroid(android => android.OnCreate((activity, _) =>
+                CrossFirebase.Initialize(activity)));
             });
 
             return builder;

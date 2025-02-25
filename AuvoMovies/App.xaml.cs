@@ -1,4 +1,19 @@
-﻿namespace AuvoMovies
+﻿using System.Globalization;
+using AuvoMovies.Handlers;
+using AuvoMovies.Pages;
+using AuvoMovies.Services.Interfaces;
+using AuvoMovies.ViewModels;
+
+
+#if ANDROID
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+#endif
+
+#if IOS || MACCATALYST
+using UIKit;
+#endif
+
+namespace AuvoMovies
 {
     public partial class App : Application
     {
@@ -6,20 +21,32 @@
         {
             InitializeComponent();
 
-            //// Inicializa as notificações push
-            //FirebasePushNotificationManager.Initialize(this);
+            var cultureInfo = new CultureInfo("pt-BR");
+            CultureInfo.CurrentCulture = cultureInfo;
+            CultureInfo.CurrentUICulture = cultureInfo;
 
-            //// Inscrever-se em um tópico (opcional)
-            //FirebasePushNotificationManager.Subscribe("news");
+            //Borderless entry
+            Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(BorderlessEntry), (handler, view) =>
+            {
+                if (view is BorderlessEntry)
+                {
+#if __ANDROID__
+                    handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+                    handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
+#elif __IOS__
+                    handler.PlatformView.BackgroundColor = UIKit.UIColor.Clear;
+                    handler.PlatformView.Layer.BorderWidth = 0;
+                    handler.PlatformView.Layer.BorderColor = UIColor.White.CGColor;
+                    handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
+#endif
+                }
+            });
 
-            //// Configura o evento de notificação recebida
-            //FirebasePushNotificationManager.OnNotificationReceived += (sender, e) =>
-            //{
-            //    // A lógica para quando uma notificação for recebida
-            //    Console.WriteLine($"Título: {e.Title}, Mensagem: {e.Message}");
-            //};
+            //var loginViewModel = Handler.MauiContext.Services.GetService<LoginViewModel>();
+            var service = Handler?.MauiContext.Services.GetService<IFilmeService>();
+            var settings = Handler?.MauiContext.Services.GetService<ISettings>();
 
-            MainPage = new AppShell();
+            MainPage = new LoginPage(service, settings);
         }
     }
 }

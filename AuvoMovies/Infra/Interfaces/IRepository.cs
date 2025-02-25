@@ -15,6 +15,7 @@ namespace AuvoMovies.Infra.Interfaces
         void Salvar(Filme user);
 
         List<Filme> BUscar();
+        Filme BUscarPOrId(int id);
         void Delete(Filme filme);
     }
 }

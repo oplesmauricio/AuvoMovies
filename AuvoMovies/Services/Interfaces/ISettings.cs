@@ -13,7 +13,7 @@ namespace AuvoMovies.Services.Interfaces
         string UrlApiAutenticacaoTMDb { get; }
         string UrlImagePathTMDB { get; }
         string ApiKeyTMDB { get; }
-        string Token { get; }
+        string Token { get; set;  }
         string DatabaseFilename { get; }
         SQLite.SQLiteOpenFlags Flags { get; }
         string DatabasePath { get; }

@@ -15,16 +15,40 @@ public partial class FilmesPage : BasePage
 {
     private readonly IFilmeService _filmeService;
     private readonly FilmesViewModel vm;
-    public FilmesPage(FilmesViewModel vm)
+    private readonly ISettings _settings;
+    public FilmesPage(FilmesViewModel vm, IFilmeService service, ISettings _settings)
 	{
 		InitializeComponent();
         BindingContext = this.vm = vm;
+        this._filmeService = service;
+        this._settings = _settings;
 	}
 
     protected override async void OnAppearing()
     {
         try
         {
+            #region
+            string requestToken = await new TMDBService().GetRequestTokenAsync();
+            string jsonResponse = await new TMDBService().ValidateWithLoginAsync(requestToken, "mauriciodevelopermaui", "1234");
+
+            await Launcher.OpenAsync($"https://www.themoviedb.org/authenticate/{requestToken}");
+
+
+            // Aqui você teria uma tela de login que permite ao usuário inserir suas credenciais diretamente
+            // ou realizar a autenticação de outra forma. Para simplicidade, estamos ignorando o fluxo de login.
+
+            // Se o login for bem-sucedido, cria o token de sessão
+            string sessionToken = await new TMDBService().CreateSessionTokenAsync(requestToken);
+
+
+
+            // Agora, você pode usar o sessionToken para fazer chamadas API autenticadas
+            string userInfo = await new TMDBService().GetUserInfoAsync(sessionToken);
+            _settings.Token = sessionToken;
+            var favoritos = await _filmeService.BuscarFavoritosAsync();
+            #endregion
+
             base.OnAppearing();
             await NewMethod();
 
