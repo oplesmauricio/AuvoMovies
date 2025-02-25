@@ -1,5 +1,6 @@
 ﻿using AuvoMovies.Infra.Interfaces;
 using AuvoMovies.Models;
+using AuvoMovies.Services.Interfaces;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,12 @@ namespace AuvoMovies.Infra
     public class Repository : IRepository
     {
         private readonly string dbPath;
-        private SQLiteAsyncConnection _dbConnection;
+        private readonly ISettings _settings;
 
-        public Repository()
+        public Repository(ISettings settings)
         {
-            dbPath = Path.Combine(FileSystem.AppDataDirectory, "app_database.db3");
+            _settings = settings;
+            dbPath = Path.Combine(FileSystem.AppDataDirectory, _settings.DatabaseFilename);
             Inicializar();
         }
 

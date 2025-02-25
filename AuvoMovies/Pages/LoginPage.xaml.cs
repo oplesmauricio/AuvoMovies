@@ -5,9 +5,8 @@ namespace AuvoMovies.Pages;
 
 public partial class LoginPage : ContentPage
 {
-    private LoginViewModel vm;
-    private IFilmeService _service;
-    private ISettings _settings;
+    private readonly IFilmeService _service;
+    private readonly ISettings _settings;
     public LoginPage(IFilmeService service, ISettings settings)
     {
         InitializeComponent();

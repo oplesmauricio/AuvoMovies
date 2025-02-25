@@ -10,9 +10,9 @@ namespace AuvoMovies.ViewModels
 {
     public partial class FavoritosViewModel : ObservableObject
     {
-        private IFilmeService _filmeService;
-        private ISettings _settings;
-        private IRepository _repository;
+        private readonly IFilmeService _filmeService;
+        private readonly ISettings _settings;
+        private readonly IRepository _repository;
 
         [ObservableProperty]
         public ObservableCollection<Filme> filmes = new();

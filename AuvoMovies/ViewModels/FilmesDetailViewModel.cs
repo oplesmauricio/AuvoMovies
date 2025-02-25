@@ -11,9 +11,9 @@ namespace AuvoMovies.ViewModels
     [QueryProperty("JaEstaFavoritado", "JaEstaFavoritado")]
     public partial class FilmesDetailViewModel : ObservableObject
     {
-        private IFilmeService _filmeService;
-        private ISettings _settings;
-        private IRepository _repository;
+        private readonly IFilmeService _filmeService;
+        private readonly ISettings _settings;
+        private readonly IRepository _repository;
 
         [ObservableProperty]
         public Filme filme;
@@ -23,8 +23,6 @@ namespace AuvoMovies.ViewModels
 
         [ObservableProperty]
         public bool jaEstaFavoritado;
-
-        //public IRelayCommand FavoritarCommand { get; }
 
         public FilmesDetailViewModel(IFilmeService filmeService, ISettings settings, IRepository repository)
         {
@@ -39,6 +37,7 @@ namespace AuvoMovies.ViewModels
             _repository.Salvar(filme);
 
             var result = await _filmeService.Favoritar(filme.Id);
+            //TODO
             //isRefreshing = false;
             if (result.IsSuccess)
             {

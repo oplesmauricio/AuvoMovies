@@ -7,14 +7,12 @@ namespace AuvoMovies.Pages;
 
 public partial class FilmeDetailPage : ContentPage
 {
-    public FilmesDetailViewModel vm { get; set; }
-    public IFilmeService service { get; set; }
-    private readonly ISettings _settings;
-    public FilmeDetailPage(FilmesDetailViewModel vm, IFilmeService service)
+    private readonly FilmesDetailViewModel vm;
+
+    public FilmeDetailPage(FilmesDetailViewModel vm)
     {
         InitializeComponent();
         BindingContext = this.vm = vm;
-        this.service = service;
     }
 
     protected async override void OnAppearing()
