@@ -46,19 +46,19 @@
     </Shell.FlyoutFooter>
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Icon="perm_identity.png"
+        <ShellContent Icon="movie.png"
                       Title="Filmes"
                       ContentTemplate="{DataTemplate pages:FilmesPage}"
                       Route="Filmes"
             ></ShellContent>
 
-        <ShellContent Icon="description.png"
+        <ShellContent Icon="local_movies.png"
                       Title="Favoritos"
                       ContentTemplate="{DataTemplate pages:FavoritosPage}"
                       Route="Favoritos"
         ></ShellContent>
 
-        <ShellContent Icon="description.png"
+        <ShellContent Icon="subtitles.png"
                       Title="Enviar Notificacao"
                       ContentTemplate="{DataTemplate pages:EnviarNotificacaoPage}"
                       Route="EnviarNotificacao"
@@ -68,12 +68,12 @@
     <!--Tabbar para IOS-->
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" IsVisible="{OnPlatform Android=False, iOS=True}">
 
-        <ShellContent Icon="perm_identity.png"
+        <ShellContent Icon="movie.png"
               Title="Filmes"
               ContentTemplate="{DataTemplate pages:FilmesPage}"
               Route="Filmes"/>
 
-        <ShellContent Icon="description.png"
+        <ShellContent Icon="local_movies.png"
               Title="Favoritos"
               ContentTemplate="{DataTemplate pages:FavoritosPage}"
               Route="Favoritos"/>

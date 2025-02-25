@@ -47,10 +47,7 @@ namespace AuvoMovies.ViewModels
         [RelayCommand]
         private async void Compartilhar()
         {
-            bool podeAbrir = await Launcher.Default.CanOpenAsync("whatsapp://");
-
-            if (podeAbrir)
-                await Launcher.Default.OpenAsync($"whatsapp://send?phone=+{558488635073}&text={"Esse filme parece ser bom: " + filme.Title + "\n" + filme.Overview}");
+            await Launcher.Default.OpenAsync($"whatsapp://send?phone=+{556294057385}&text={"Esse filme parece ser bom: " + filme.Title + "\n" + filme.Overview}");
         }
 
         public async Task VerificarFavorito()
