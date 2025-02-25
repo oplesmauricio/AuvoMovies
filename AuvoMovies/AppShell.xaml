@@ -45,24 +45,43 @@
         <controls:FlyoutFooter />
     </Shell.FlyoutFooter>
 
-    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Icon="movie.png"
+    <FlyoutItem x:Name="menu"  FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent 
                       Title="Filmes"
                       ContentTemplate="{DataTemplate pages:FilmesPage}"
-                      Route="Filmes"
-            ></ShellContent>
+                      Route="Filmes">
+            <ShellContent.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="movie30.png"/>
+                    <On Platform="Android" Value="movie.png"/>
+                </OnPlatform>
+            </ShellContent.Icon>
+        </ShellContent>
 
-        <ShellContent Icon="local_movies.png"
+        <ShellContent 
                       Title="Favoritos"
                       ContentTemplate="{DataTemplate pages:FavoritosPage}"
-                      Route="Favoritos"
-        ></ShellContent>
+                      Route="Favoritos">
+            <ShellContent.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="local_movies30.png"/>
+                    <On Platform="Android" Value="local_movies.png"/>
+                </OnPlatform>
+            </ShellContent.Icon>
+        </ShellContent>
 
-        <ShellContent Icon="subtitles.png"
+
+        <ShellContent x:Name="EnviarNotificacao"
                       Title="Enviar Notificacao"
                       ContentTemplate="{DataTemplate pages:EnviarNotificacaoPage}"
-                      Route="EnviarNotificacao"
-        ></ShellContent>
+                      Route="EnviarNotificacao">
+            <ShellContent.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="subtitles30.png"/>
+                    <On Platform="Android" Value="subtitles.png"/>
+                </OnPlatform>
+            </ShellContent.Icon>
+        </ShellContent>
     </FlyoutItem>
 
     <!--Tabbar para IOS-->
