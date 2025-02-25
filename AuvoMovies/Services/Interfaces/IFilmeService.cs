@@ -11,7 +11,6 @@ namespace AuvoMovies.Services.Interfaces
     public interface IFilmeService
     {
         Task<Result<IEnumerable<Filme>>> GetFilmesAsync();
-        //Task<Result> AutenticarAsync();
         Task<Result> Favoritar(int idFilme);
         Task<Result<IEnumerable<Filme>>> BuscarFavoritosAsync();
 

@@ -17,7 +17,7 @@ namespace AuvoMovies
 {
     public partial class App : Application
     {
-        public App()
+        public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
 
@@ -43,8 +43,8 @@ namespace AuvoMovies
             });
 
             //var loginViewModel = Handler.MauiContext.Services.GetService<LoginViewModel>();
-            var service = Handler?.MauiContext.Services.GetService<IFilmeService>();
-            var settings = Handler?.MauiContext.Services.GetService<ISettings>();
+            var service = serviceProvider.GetService<IFilmeService>();
+            var settings = serviceProvider.GetService<ISettings>();
 
             MainPage = new LoginPage(service, settings);
         }

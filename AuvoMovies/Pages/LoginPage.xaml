@@ -11,9 +11,6 @@
     NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False"
     Unloaded="PageUnloaded">
-    <ContentPage.Behaviors>
-        <toolkit:StatusBarBehavior StatusBarColor="Transparent" StatusBarStyle="DarkContent" />
-    </ContentPage.Behaviors>
 
     <Grid>
         <toolkit:MediaElement
@@ -46,7 +43,6 @@
                         HorizontalOptions="Fill"
                         Spacing="20"
                         VerticalOptions="Fill">
-                        <!--  Logo & Header  -->
                         <StackLayout
                             Margin="0,20,0,0"
                             HorizontalOptions="Center"
@@ -64,7 +60,7 @@
                                     Background="{DynamicResource White}"
                                     HeightRequest="70"
                                     HorizontalOptions="Center"
-                                    Source="logo.png"
+                                    Source="logo_auvo.png"
                                     Stroke="Transparent"
                                     StrokeShape="{RoundRectangle CornerRadius=50}"
                                     VerticalOptions="Center"
@@ -99,7 +95,7 @@
                                         FontSize="22"
                                         HorizontalOptions="Center"
                                         HorizontalTextAlignment="Center"
-                                        Text="{x:Static icons:LineAwesome.Phone}"
+                                        Text="{x:Static icons:LineAwesome.User}"
                                         TextColor="{DynamicResource BaseIconColor}"
                                         VerticalOptions="CenterAndExpand" />
 
@@ -174,7 +170,10 @@
 
                 </FlexLayout>
 
+                <ActivityIndicator Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="actIndicator" IsRunning="False" IsVisible="False" HorizontalOptions="Center" VerticalOptions="Center" Color="{DynamicResource White}"/>
             </Grid>
+
         </ScrollView>
+
     </Grid>
 </ContentPage>

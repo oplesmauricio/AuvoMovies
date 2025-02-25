@@ -9,9 +9,11 @@ public partial class LoginPage : ContentPage
     private IFilmeService _service;
     private ISettings _settings;
     public LoginPage(IFilmeService service, ISettings settings)
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+        _service = service;
+        _settings = settings;
+    }
 
     protected override void OnAppearing()
     {
@@ -26,30 +28,58 @@ public partial class LoginPage : ContentPage
 
     private async void LoginButtonClicked(object sender, EventArgs e)
     {
-        var resultToekn = await _service.PegarTokenASync();
+        try
+        {
+            actIndicator.IsRunning = true;
+            actIndicator.IsVisible = true;
 
-        if (resultToekn.IsFailed)
-            await Application.Current.MainPage.DisplayAlert("", resultToekn.Errors.FirstOrDefault().Message, "");
+            if(String.IsNullOrEmpty(this.Usuario.Text))
+            {
+                await DisplayAlert("Carissimo", "Vc precisa digitar um usuario meu jovem", "Ok");
+                return;
+            }
 
-        var resultValidacao = await _service.ValidarToken(resultToekn.Value, this.Usuario.Text, this.Senha.Text);
+            if (String.IsNullOrEmpty(this.Senha.Text))
+            {
+                await DisplayAlert("Carissimo", "Vc precisa digitar uma senha meu jovem", "Ok");
+                return;
+            }
 
-        if (resultValidacao.IsFailed)
-            await Application.Current.MainPage.DisplayAlert("", resultValidacao.Errors.FirstOrDefault().Message, "");
+            var resultToekn = await _service.PegarTokenASync();
+            if (resultToekn.IsFailed)
+            {
+                await DisplayAlert("Ops", resultToekn.Errors.FirstOrDefault().Message, "Ok");
+                return;
+            }
 
-        var resultTokenSessao = await _service.CriarTokenSessaoAsync(resultToekn.Value);
+            var resultValidacao = await _service.ValidarToken(resultToekn.Value, this.Usuario.Text, this.Senha.Text);
+            if (resultValidacao.IsFailed)
+            {
+                await DisplayAlert("Ops", resultValidacao.Errors.FirstOrDefault().Message, "Ok");
+                return;
+            }
 
-        if (resultTokenSessao.IsFailed)
-            await Application.Current.MainPage.DisplayAlert("", resultTokenSessao.Errors.FirstOrDefault().Message, "");
+            var resultTokenSessao = await _service.CriarTokenSessaoAsync(resultToekn.Value);
+            if (resultTokenSessao.IsFailed)
+            {
+                await DisplayAlert("Ops", resultTokenSessao.Errors.FirstOrDefault().Message, "Ok");
+                return;
+            }
 
-        //return resultTokenSessao;
+            _settings.Token = resultTokenSessao.Value;
 
-        _settings.Token = $"Bearer {resultTokenSessao.Value}";
-
-        Application.Current.MainPage = new AppShell();
-    }
-    private async void ForgotPassword_Tapped(object sender, EventArgs e)
-    {
-        //await Navigation.PushAsync(new ForgotPasswordPage());
+            App.Current.MainPage = new AppShell();
+        }
+        catch (Exception ex)
+        {
+            //implementar aplication insignths azure
+            await DisplayAlert("Ops", "Nao conseguimso logar", "Ok");
+        }
+        finally
+        {
+            actIndicator.IsRunning = false;
+            actIndicator.IsVisible = false;
+        }
     }
 
     private async void GoBack_Tapped(object sender, EventArgs e)
@@ -60,5 +90,10 @@ public partial class LoginPage : ContentPage
     private void PageUnloaded(object sender, EventArgs e)
     {
         MediaPlayer.Handler?.DisconnectHandler();
+    }
+
+    private async void ForgotPassword_Tapped(object sender, TappedEventArgs e)
+    {
+        await DisplayAlert("Essa aqui entra com debito tecnico", "Esta no proximo card do backlog", "Ok");
     }
 }

@@ -37,7 +37,7 @@ namespace AuvoMovies.ViewModels
             var result = await _filmeService.BuscarFavoritosAsync();
 
             if (result.IsFailed)
-                await Application.Current.MainPage.DisplayAlert("", result.Errors.FirstOrDefault().Message, "");
+                await Application.Current.MainPage.DisplayAlert("", result.Errors.FirstOrDefault().Message, "Ok");
 
             AtribuirAListaDaTela(result.Value);
         }

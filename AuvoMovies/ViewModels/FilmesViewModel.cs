@@ -33,7 +33,7 @@ namespace AuvoMovies.ViewModels
             var result = await _filmeService.GetFilmesAsync();
 
             if (result.IsFailed)
-                await Application.Current.MainPage.DisplayAlert("", result.Errors.FirstOrDefault().Message, "");
+                await Application.Current.MainPage.DisplayAlert("", result.Errors.FirstOrDefault().Message, "Ok");
 
             filmes.Clear();
 
@@ -42,14 +42,6 @@ namespace AuvoMovies.ViewModels
                 filme.PosterPath = _settings.UrlImagePathTMDB + filme.PosterPath;
                 filmes.Add(filme);
             }
-        }
-
-        public async Task Autenticar()
-        {
-            //var result = await _filmeService.AutenticarAsync();
-
-            //if (result.IsFailed)
-            //    await Application.Current.MainPage.DisplayAlert("", result.Errors.FirstOrDefault().Message, "");
         }
 
         [RelayCommand]

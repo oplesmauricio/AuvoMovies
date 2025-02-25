@@ -18,7 +18,7 @@
     BasedOn="{StaticResource BaseButtonStyle}"
     TargetType="Button">
         <Setter Property="TextColor" Value="{DynamicResource White}" />
-        <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryColor}" />
     </Style>
 
 </ResourceDictionary>

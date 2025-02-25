@@ -32,7 +32,7 @@
             <Color x:Key="PrimaryLighterColor">#488fed</Color>
             <Color x:Key="PrimaryGradient">#3E65FF</Color>
             <Color x:Key="PrimaryLight">#A4CDFF</Color>
-            <Color x:Key="SecondaryColor">#7A68FA</Color>
+            <Color x:Key="SecondaryColor">#827ECC</Color>
 
             <Color x:Key="Primary50Color">#801A73E8</Color>
             <Color x:Key="Primary40Color">#661A73E8</Color>
@@ -66,11 +66,6 @@
             <Color x:Key="NavigationBarIconColor">#333942</Color>
             <Color x:Key="MainMenuOverlayBackgroundColor">#22F1F3F5</Color>
 
-            <!--  DIALOGS & POPUPS  -->
-            <!--<Color x:Key="DialogsShimBackgroundColor">#CC000000</Color>
-<Color x:Key="CustomActionSheetShimBackgroundColor">#CC000000</Color>
-<Color x:Key="CustomActionSheetBackgroundColor">#F1F3F5</Color>
-<Color x:Key="CustomActionSheetTextColor">#666666</Color>-->
 
             <!--  GENERAL COLORS  -->
             <Color x:Key="InverseTextColor">#FFFFFF</Color>

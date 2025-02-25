@@ -6,12 +6,12 @@
     xmlns:local="clr-namespace:AuvoMovies"
     xmlns:pages="clr-namespace:AuvoMovies.Pages"
     xmlns:controls="clr-namespace:AuvoMovies.Controls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.TabBarIsVisible="{OnPlatform iOS=True, Android=False}"
-    Shell.BackgroundColor="#827ECC"
+    Shell.BackgroundColor="{DynamicResource SecondaryColor}"
     Shell.FlyoutBackgroundImage="bg_purple_identidade.png"
     Shell.FlyoutBackgroundImageAspect="AspectFill"
     Title="AuvoMovies">
-
 
     <Shell.FlyoutBehavior>
         <OnPlatform x:TypeArguments="FlyoutBehavior">

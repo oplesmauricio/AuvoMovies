@@ -3,6 +3,8 @@ using Android.Content.PM;
 using Android.OS;
 using Plugin.Firebase.CloudMessaging;
 using Android.Content;
+using Android.Views;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 namespace AuvoMovies
 {
     [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true, LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
@@ -14,6 +16,8 @@ namespace AuvoMovies
             //HandleIntent(Intent);
             //CreateNotificationChannelIfNeeded();
             //PegarDeviceToken();
+
+            Window.SetStatusBarColor(((Color)App.Current.Resources["SecondaryColor"]).ToAndroid());
         }
 
         protected override void OnNewIntent(Intent intent)
