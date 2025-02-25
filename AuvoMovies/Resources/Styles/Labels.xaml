@@ -7,4 +7,9 @@
         <Setter Property="TextColor" Value="{DynamicResource BaseTextColor}" />
         <Setter Property="FontFamily" Value="MediumFont" />
     </Style>
+
+
+    <Style x:Key="PrimaryLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />
+    </Style>
 </ResourceDictionary>

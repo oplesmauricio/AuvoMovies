@@ -120,6 +120,15 @@
   <data name="BemVindo" xml:space="preserve">
     <value>Bem Vindo</value>
   </data>
+  <data name="DescricaoNotificacao" xml:space="preserve">
+    <value>Descricao da notificacao</value>
+  </data>
+  <data name="EnviarNotificacaoBtn" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="EnvioNotificacaoTitulo" xml:space="preserve">
+    <value>Envio de notificacao pelo firebase</value>
+  </data>
   <data name="EsqueciMinhaSenha" xml:space="preserve">
     <value>Esqueci minha senha</value>
   </data>
@@ -131,6 +140,9 @@
   </data>
   <data name="Senha" xml:space="preserve">
     <value>Senha</value>
+  </data>
+  <data name="TituloNotificacao" xml:space="preserve">
+    <value>Titulo da notificacao</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>UserName</value>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="AuvoMovies.Pages.EnviarNotificacaoPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:controls="clr-namespace:AuvoMovies.Controls"
+    xmlns:handlers="clr-namespace:AuvoMovies.Handlers"
+    xmlns:traducoes="clr-namespace:AuvoMovies.Resources.Translations"
+    xmlns:viewodels="clr-namespace:AuvoMovies.ViewModels"
+    Title="Enviar Notificacao">
+
+    <!--<ContentPage.BindingContext>
+        <viewodels:EnviarNotificacaoViewModel />
+    </ContentPage.BindingContext>-->
+
+    <ScrollView VerticalScrollBarVisibility="Default">
+        <Grid>
+
+            <Grid
+                Grid.Column="1"
+                RowDefinitions="Auto, *"
+                RowSpacing="30">
+
+                <VerticalStackLayout
+                    Padding="30,0"
+                    HorizontalOptions="CenterAndExpand"
+                    Spacing="20"
+                    VerticalOptions="Start"
+                    Margin="0,50,0,0">
+                    <Border
+                        Padding="0"
+                        Background="{DynamicResource SecondaryColor}"
+                        HeightRequest="80"
+                        HorizontalOptions="Center"
+                        Stroke="{DynamicResource White}"
+                        StrokeShape="{RoundRectangle CornerRadius=16}"
+                        StrokeThickness="3"
+                        WidthRequest="80">
+                        <controls:RoundedCornerImage
+                            Background="{DynamicResource White}"
+                            HeightRequest="50"
+                            HorizontalOptions="Center"
+                            Source="logo_auvo.png"
+                            Stroke="Transparent"
+                            StrokeShape="{RoundRectangle CornerRadius=50}"
+                            VerticalOptions="Center"
+                            WidthRequest="50" />
+                    </Border>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource Title2}"
+                        Text="Firebase" />
+                    <Label
+                        FontSize="17"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource PrimaryLabel}"
+                        Text="{x:Static traducoes:Traducoes.EnvioNotificacaoTitulo}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    Padding="30,0"
+                    HorizontalOptions="Fill"
+                    Spacing="16"
+                    VerticalOptions="CenterAndExpand">
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <handlers:BorderlessEntry
+                            HeightRequest="42"
+                            Keyboard="Default"
+                            Placeholder="{x:Static traducoes:Traducoes.TituloNotificacao}"
+                            PlaceholderColor="{DynamicResource BaseTextColor}"
+                            Text="{Binding TituloNotificacao}"/>
+                    </Border>
+
+                    <Border Padding="20,5" Background="{DynamicResource EntryAndEditorsBackgroundColor}">
+                        <handlers:BorderlessEntry
+                            HeightRequest="42"
+                            Keyboard="Default"
+                            Placeholder="{x:Static traducoes:Traducoes.DescricaoNotificacao}"
+                            PlaceholderColor="{DynamicResource BaseTextColor}"
+                            Text="{Binding DescricaoNotificacao}" />
+                    </Border>
+
+                    <Button
+                        BackgroundColor="{DynamicResource SecondaryColor}"
+                        Command="{Binding EnviarNotificacaoCommand}"
+                        CornerRadius="14"
+                        HeightRequest="50"
+                        Text="{x:Static traducoes:Traducoes.EnviarNotificacaoBtn}"
+                        TextColor="{DynamicResource White}" />
+                    
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

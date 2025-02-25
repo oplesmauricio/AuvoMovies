@@ -13,9 +13,9 @@ namespace AuvoMovies
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            //HandleIntent(Intent);
-            //CreateNotificationChannelIfNeeded();
-            //PegarDeviceToken();
+            HandleIntent(Intent);
+            CreateNotificationChannelIfNeeded();
+            PegarDeviceToken();
 
             Window.SetStatusBarColor(((Color)App.Current.Resources["SecondaryColor"]).ToAndroid());
         }

@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 
 #if ANDROID
-using Plugin.Firebase.CloudMessaging;
 using Plugin.Firebase.Core.Platforms.Android;
 #endif
 namespace AuvoMovies
@@ -21,6 +20,12 @@ namespace AuvoMovies
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+#if ANDROID
+                .RegisterFirebaseServices()
+#endif
+                .RegisterServices()
+                .RegisterViewModels()
+                .RegisterPages()
                 .UseMauiCommunityToolkit()
                 .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
@@ -37,24 +42,21 @@ namespace AuvoMovies
             builder.Logging.AddDebug();
 #endif
 
-            builder.Services.AddSingleton<IApiService, ApiService>();
-            builder.Services.AddSingleton<IFilmeService, FilmeService>();
-            builder.Services.AddSingleton<IRepository, Repository>();
-            builder.Services.AddSingleton<ISettings, Settings>();
+            //builder.Services.AddSingleton<IApiService, ApiService>();
+            //builder.Services.AddSingleton<IFilmeService, FilmeService>();
+            //builder.Services.AddSingleton<IRepository, Repository>();
+            //builder.Services.AddSingleton<ISettings, Settings>();
+            //builder.Services.AddSingleton<IFirebaseService, FirebaseService>();
 
-            builder.Services.AddSingleton<FilmesPage>();
-            builder.Services.AddSingleton<FilmesViewModel>();
-            builder.Services.AddScoped<FilmeDetailPage>();
-            builder.Services.AddScoped<FilmesDetailViewModel>();
-            builder.Services.AddScoped<FavoritosPage>();
-            builder.Services.AddScoped<FavoritosViewModel>();
-            builder.Services.AddScoped<LoginPage>();
-            //builder.Services.AddScoped<LoginViewModel>();
-
-
-#if ANDROID
-            builder.RegisterFirebaseServices();
-#endif
+            //builder.Services.AddSingleton<FilmesPage>();
+            //builder.Services.AddSingleton<FilmesViewModel>();
+            //builder.Services.AddScoped<FilmeDetailPage>();
+            //builder.Services.AddScoped<FilmesDetailViewModel>();
+            //builder.Services.AddScoped<FavoritosPage>();
+            //builder.Services.AddScoped<FavoritosViewModel>();
+            //builder.Services.AddScoped<LoginPage>();
+            //builder.Services.AddScoped<EnviarNotificacaoPage>();
+            //builder.Services.AddScoped<EnviarNotificacaoViewModel>();
 
             return builder.Build();
         }
@@ -71,5 +73,39 @@ namespace AuvoMovies
             return builder;
         }
 #endif
+
+        private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
+        {
+            builder.Services.AddSingleton<FilmesViewModel>();
+            builder.Services.AddScoped<FilmesDetailViewModel>();
+            builder.Services.AddScoped<FavoritosViewModel>();
+            builder.Services.AddScoped<EnviarNotificacaoViewModel>();
+
+            return builder;
+        }
+
+        private static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
+        {
+            builder.Services.AddSingleton<FilmesPage>();
+            builder.Services.AddScoped<FilmeDetailPage>();
+            builder.Services.AddScoped<FavoritosPage>();
+            builder.Services.AddScoped<LoginPage>();
+            builder.Services.AddScoped<EnviarNotificacaoPage>();
+
+            return builder;
+        }
+
+
+
+        private static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
+        {
+            builder.Services.AddSingleton<IApiService, ApiService>();
+            builder.Services.AddSingleton<IFilmeService, FilmeService>();
+            builder.Services.AddSingleton<IRepository, Repository>();
+            builder.Services.AddSingleton<ISettings, Settings>();
+            builder.Services.AddSingleton<IFirebaseService, FirebaseService>();
+
+            return builder;
+        }
     }
 }

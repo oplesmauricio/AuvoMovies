@@ -70,6 +70,33 @@ namespace AuvoMovies.Resources.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Descricao da notificacao.
+        /// </summary>
+        internal static string DescricaoNotificacao {
+            get {
+                return ResourceManager.GetString("DescricaoNotificacao", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enviar.
+        /// </summary>
+        internal static string EnviarNotificacaoBtn {
+            get {
+                return ResourceManager.GetString("EnviarNotificacaoBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Envio de notificacao pelo firebase.
+        /// </summary>
+        internal static string EnvioNotificacaoTitulo {
+            get {
+                return ResourceManager.GetString("EnvioNotificacaoTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esqueci minha senha.
         /// </summary>
         internal static string EsqueciMinhaSenha {
@@ -102,6 +129,15 @@ namespace AuvoMovies.Resources.Translations {
         internal static string Senha {
             get {
                 return ResourceManager.GetString("Senha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Titulo da notificacao.
+        /// </summary>
+        internal static string TituloNotificacao {
+            get {
+                return ResourceManager.GetString("TituloNotificacao", resourceCulture);
             }
         }
         

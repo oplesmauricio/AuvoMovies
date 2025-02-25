@@ -57,6 +57,12 @@
                       ContentTemplate="{DataTemplate pages:FavoritosPage}"
                       Route="Favoritos"
         ></ShellContent>
+
+        <ShellContent Icon="description.png"
+                      Title="Enviar Notificacao"
+                      ContentTemplate="{DataTemplate pages:EnviarNotificacaoPage}"
+                      Route="EnviarNotificacao"
+        ></ShellContent>
     </FlyoutItem>
 
 

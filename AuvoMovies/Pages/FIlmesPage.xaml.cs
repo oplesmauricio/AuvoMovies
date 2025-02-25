@@ -1,9 +1,14 @@
 using AuvoMovies.Models;
+using AuvoMovies.Models.Responses;
+using AuvoMovies.Models.Sends;
 using AuvoMovies.Pages.Base;
 using AuvoMovies.Services;
 using AuvoMovies.Services.Interfaces;
 using AuvoMovies.ViewModels;
+using FirebaseAdmin;
+using FirebaseAdmin.Messaging;
 using FluentResults;
+using Google.Apis.Auth.OAuth2;
 
 //#if ANDROID
 //using Plugin.Firebase.CloudMessaging;
@@ -29,7 +34,6 @@ public partial class FilmesPage : BasePage
         try
         {
             base.OnAppearing();
-            await NewMethod();
 
             if (!INternetConectada())
             {
@@ -47,16 +51,6 @@ public partial class FilmesPage : BasePage
         catch (Exception ex)
         {
             await DisplayAlert("Tivemos um probleminha =D", "Nao estamos conseguindos acessar a lista de filmes", "Ok");
-        }
-    }
-
-    private static async Task NewMethod()
-    {
-        if (Preferences.ContainsKey("DeviceToken"))
-        {
-            var deviceToken = Preferences.Get("DeviceToken", "");
-
-
         }
     }
 
